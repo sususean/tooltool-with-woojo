@@ -1,0 +1,461 @@
+/* ===================================== */
+/* FONT FACES */
+/* ===================================== */
+
+@font-face {
+  font-family: "TT Hoves Pro Medium";
+  src: url("/fonts/tt_hoves_pro_trial\ _medium.woff") format("woff");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "TT Hoves Pro Regular";
+  src: url("/fonts/tt_hoves_pro_trial\ _regular.woff") format("woff");
+  font-weight: normal;
+}
+
+/* ===================================== */
+/* ROOT VARIABLES */
+/* ===================================== */
+:root {
+  --color-primary: var(--color-black);
+  --color-accent: var(--color-grey);
+  --color-accent-grey: var(--color-grey2);
+  --color-accent-variant: var(--color-lightgrey);
+  --color-background: var(--color-white);
+  --color-brand: var(--color-lime);
+
+  --color-black: #1f1f1f;
+  --color-grey: #a0a0a0;
+  --color-grey2: #dedede;
+  --color-lightgrey: #efefef;
+  --color-white: #fcfcfc;
+  --color-lime: #aff7a1;
+
+  /* Split-Flap specific CSS variables – initial values */
+  --panel-bg-color: #0f0f0f;
+  --flap-bg-color: #2a2a2a;
+  --text-color: #ffffff;
+  --border-color: #0d0d0d;
+  --gap-color: #444444;
+}
+
+/* ===================================== */
+/* RESET + GLOBAL STYLES */
+/* ===================================== */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: "TT Hoves Pro Medium", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-background);
+}
+
+/* ===================================== */
+/* MAIN CONTAINER & CONTENT STYLES */
+/* ===================================== */
+.main-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 250px;
+  border: 6px solid var(--color-brand);
+  background-color: var(--color-accent);
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  gap: 8px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.section {
+  background-color: var(--color-lightgrey);
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.collapse-circle {
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-brand);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-primary);
+  margin-left: auto;
+  cursor: pointer;
+  user-select: none;
+}
+
+.collapse-circle img {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+.content-area {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section-label,
+.speed-value,
+.tool-note {
+  color: var(--color-grey);
+  font-size: 1rem;
+}
+
+textarea.mini-box {
+  border: none;
+  outline: none;
+  background-color: var(--color-grey2);
+  resize: none;
+  width: 100%;
+  height: 100%;
+  padding: 6px 10px;
+  box-sizing: border-box;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--color-black);
+}
+
+.mini-box {
+  width: 100%;
+  height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+.mini-box input[type="color"] {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.mini-box input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.mini-box input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border-radius: 6px;
+}
+
+.mini-box input[type="color"]::-moz-color-swatch {
+  border: none;
+  border-radius: 6px;
+}
+
+.mini-box.border-only {
+  background-color: transparent;
+  border: 2px dashed var(--color-accent);
+  border-radius: 8px;
+}
+
+/* --- Plus box: force default styling independent of picker's value --- */
+.mini-box.plus {
+  position: relative;
+  border: 2px solid var(--color-accent);
+  background-color: var(--color-lightgrey);
+  font-size: 20px;
+  color: var(--color-grey);
+  padding-bottom: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mini-box.plus::before {
+  content: "+";
+  position: relative; /* show plus sign */
+  z-index: 2;
+  pointer-events: none;
+}
+
+.mini-box.plus input[type="color"] {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.box-row {
+  display: flex;
+  gap: 6px;
+}
+
+.main-container.collapsed .content-area {
+  display: none;
+}
+
+.section-play {
+  background-color: var(--color-brand);
+}
+
+.play-btn {
+  color: var(--color-grey);
+  font-size: 1.5rem;
+  width: 100%;
+  background: none;
+  border: none;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* ===================================== */
+/* SWITCH / TOGGLE STYLES */
+/* ===================================== */
+.switch {
+  position: relative;
+  width: 40px;
+  height: 20px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-accent);
+  border-radius: 20px;
+  transition: 0.4s;
+}
+
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--color-white);
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.switch input:checked + .slider {
+  background-color: var(--color-brand);
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* ===================================== */
+/* SPLIT-FLAP DISPLAY STYLES */
+/* ===================================== */
+/* Center the split‑flap display in the middle of the window */
+#display {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column; /* stack each line vertically */
+  align-items: center; /* center each line horizontally */
+  gap: 10px;
+  perspective: 500px;
+}
+
+/* Each line of split-flap is a flex container with no wrap */
+.line {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.char-slot {
+  width: 90px;
+  height: 120px;
+  position: relative;
+  background-color: var(--panel-bg-color);
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+  transition: background-color 0.3s ease;
+}
+
+.flap {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  background-color: var(--flap-bg-color);
+  color: var(--text-color);
+  font-size: 70px;
+  font-family: "TT Hoves Pro Medium", sans-serif;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  border: 1px solid var(--border-color);
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.flap.top {
+  top: 0;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--gap-color);
+  border-radius: 5px 5px 0 0;
+  transform-origin: bottom center;
+}
+
+.flap.bottom {
+  bottom: 0;
+  align-items: flex-start;
+  border-radius: 0 0 5px 5px;
+  transform-origin: top center;
+}
+
+.char-slot.flipping .flap.top {
+  animation: flipTop 0.3s ease-in forwards;
+}
+
+.char-slot.flipping .flap.bottom {
+  transform: rotateX(90deg);
+  animation: flipBottom 0.3s ease-out 0.3s forwards;
+}
+
+/* Adjust text inside the flaps */
+.flap.top span {
+  transform: translateX(2%) translateY(50%);
+}
+
+.flap.bottom span {
+  transform: translateX(2%) translateY(-50%);
+}
+@keyframes flipTop {
+  from {
+    transform: rotateX(0deg);
+  }
+  to {
+    transform: rotateX(-90deg);
+  }
+}
+
+@keyframes flipBottom {
+  from {
+    transform: rotateX(90deg);
+  }
+  to {
+    transform: rotateX(0deg);
+  }
+}
+
+/* ===================================== */
+/* HEADER STYLES */
+/* - Styles for the header menu including logo, navigation items, and hamburger menu */
+/* ===================================== */
+.header {
+  display: flex;
+  left: 50%;
+  top: 30px;
+  transform: translateX(-50%);
+  position: fixed;
+  align-items: center;
+  overflow: hidden;
+  background: var(--color-accent);
+  border-radius: 8px;
+  height: 52px;
+  transition: width 0.4s ease-in-out;
+  z-index: 1001;
+}
+
+.header-logo {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent-variant);
+  border: 6px solid var(--color-accent);
+  border-radius: 10px;
+  padding: 8px 12px;
+  z-index: 3;
+}
+
+.header-logo img {
+  display: block;
+  height: 24px;
+}
+
+.inside {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.inside ul {
+  display: flex;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.header-item {
+  font-family: "TT Hoves Pro Medium", sans-serif;
+  font-size: 1.5rem;
+  color: var(--color-accent-variant);
+  margin-right: 10px;
+  margin-left: 25px;
+  transform: translateY(1px);
+}
+
+.header-button {
+  display: flex;
+  padding-right: 15px;
+  padding-left: 15px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.hamburger img {
+  display: block;
+  width: 25px;
+  height: 25px;
+}

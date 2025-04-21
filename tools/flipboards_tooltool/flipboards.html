@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- SEO -->
+    <title>Flipboards.Tooltool</title>
+    <meta name="author" content="Tooltool" />
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon" />
+    <meta
+      name="description"
+      content="Tooltool is a creative studio that helps brands build visual systems and 
+      provides custom-built generators to scale their identity with consistency and efficiency."
+    />
+    <!-- OG -->
+    <meta property="og:title" content="Tooltool" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tooltool.design" />
+    <meta property="og:image" content="Images/Logo.png" />
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="flipboards_style.css" />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header>
+      <div class="header" style="visibility: hidden">
+        <div class="header-logo">
+          <a href="../../index.html">
+            <img src="../../images/logo.svg" alt="tooltool" />
+          </a>
+        </div>
+
+        <div class="inside">
+          <ul>
+            <li class="header-item">
+              <a href="../../case-study.html">case study</a>
+            </li>
+            <li class="header-item">
+              <a href="../../about.html">about us</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="header-button">
+          <span class="hamburger">
+            <img src="../../images/header_hamburger.svg" alt="..." />
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Split-Flap Display Container -->
+    <div id="display" class="display-container"></div>
+
+    <!-- Canvas container -->
+    <div id="canvas-container">
+      <canvas id="dotCanvas"></canvas>
+    </div>
+    <div class="main-container" id="mainContainer">
+      <!-- Section: Collapse Button -->
+      <div class="section">
+        <div class="collapse-circle" id="collapseToggle">
+          <img id="collapseIcon" src="../../images/ui_minus.svg" alt="-" />
+        </div>
+      </div>
+      <div class="content-area" id="contentArea">
+
+      <!-- Section: Text Input -->
+      <div class="section">
+        <div class="section-label">Text</div>
+        <textarea id="textInput" class="mini-box" style="height: 50px">
+Tool
+Tool</textarea
+        >
+      </div>
+
+      <!-- Section: Background (Window) Options -->
+      <div class="section">
+        <div class="section-label">Background</div>
+        <div class="box-row">
+          <!-- Preset background options -->
+          <div
+            class="mini-box preset-bg"
+            data-color="#aff7a1"
+            style="background-color: #aff7a1"
+          ></div>
+          <div
+            class="mini-box preset-bg"
+            data-color="#fcfcfc"
+            style="background-color: #fcfcfc"
+          ></div>
+          <!-- Custom color picker -->
+          <div class="mini-box plus">
+            <input type="color" id="bgColorInput" value="#1f1f1f" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Section: Letter Color Options -->
+      <div class="section">
+        <div class="section-label">Letter Color</div>
+        <div class="box-row">
+          <!-- Preset letter color options -->
+          <div
+            class="mini-box preset-letter"
+            data-color="#aff7a1"
+            style="background-color: #aff7a1"
+          ></div>
+          <div
+            class="mini-box preset-letter"
+            data-color="#fcfcfc"
+            style="background-color: #fcfcfc"
+          ></div>
+          <!-- Custom letter color picker -->
+          <div class="mini-box plus">
+            <input type="color" id="letterColorInput" value="#efefef" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Section: Play Button -->
+      <div class="section section-play">
+        <button id="playButton" class="play-btn">Play</button>
+      </div>
+    </div>
+    <script src="flipboards_script.js"></script>
+  </body>
+</html>

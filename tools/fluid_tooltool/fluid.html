@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- SEO -->
+    <title>Fluid.Tooltool</title>
+    <meta name="author" content="Tooltool" />
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon" />
+    <meta
+      name="description"
+      content="Tooltool is a creative studio that helps brands build visual systems and 
+      provides custom-built generators to scale their identity with consistency and efficiency."
+    />
+    <!-- OG -->
+    <meta property="og:title" content="Tooltool" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tooltool.design" />
+    <meta property="og:image" content="Images/Logo.png" />
+    <!-- Load GSAP from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="fluid_style.css" />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header>
+      <div class="header" style="visibility: hidden">
+        <div class="header-logo">
+          <a href="../../index.html">
+            <img src="../../images/logo.svg" alt="tooltool" />
+          </a>
+        </div>
+
+        <div class="inside">
+          <ul>
+            <li class="header-item">
+              <a href="../../case-study.html">case study</a>
+            </li>
+            <li class="header-item">
+              <a href="../../about.html">about us</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="header-button">
+          <span class="hamburger">
+            <img src="../../images/header_hamburger.svg" alt="..." />
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <!-- TOOL -->
+    <div id="container">
+      <!-- UI Panel -->
+      <div class="main-container" id="mainContainer">
+        <!-- Section: Collapse Button -->
+        <div class="section">
+          <div class="collapse-circle" id="collapseToggle">
+            <img id="collapseIcon" src="../../images/ui_minus.svg" alt="-" />
+          </div>
+        </div>
+        <div class="content-area" id="contentArea">
+          <!-- Section: Text -->
+          <div class="section">
+            <div class="section-label">Text</div>
+            <textarea id="textInput" class="mini-box">
+tool
+tool</textarea
+            >
+          </div>
+          <!-- Section: Color -->
+          <div class="section">
+            <div class="section-label">Color</div>
+            <div class="box-row">
+              <div class="mini-box">
+                <input type="color" id="dotGrid1" value="#aff7a1" />
+              </div>
+              <div class="mini-box">
+                <input type="color" id="dotGrid2" value="#a0a0a0" />
+              </div>
+              <div class="mini-box">
+                <input type="color" id="dotGrid3" value="#dedede" />
+              </div>
+              <div class="mini-box">
+                <input type="color" id="dotGrid4" value="#fcfcfc" />
+              </div>
+            </div>
+          </div>
+          <!-- New Section: Background Color Adjustment -->
+          <div class="section">
+            <div class="section-label">Background Color</div>
+            <div class="mini-box">
+              <input type="color" id="bgColor" value="#1f1f1f" />
+            </div>
+          </div>
+          <!-- Section: Animation & Speed -->
+          <div class="section">
+            <div class="row-set">
+              <div class="toggle-row">
+                <div class="section-label">Animation</div>
+                <!-- Animation toggle is on by default -->
+                <label class="switch">
+                  <input type="checkbox" id="animationToggle" checked />
+                  <span class="slider"></span>
+                </label>
+              </div>
+              <div class="speed-row">
+                <div class="section-label">Speed</div>
+                <!-- Speed slider with integer steps and default value 5 -->
+                <input
+                  type="range"
+                  class="speed-bar"
+                  id="speedBar"
+                  min="1"
+                  max="10"
+                  step="1"
+                  value="2"
+                />
+                <div class="speed-value" id="speedValue">2</div>
+              </div>
+            </div>
+          </div>
+          <!-- Section: Hide Cursor -->
+          <div class="section">
+            <div class="toggle-row">
+              <div class="section-label">Hide Cursor</div>
+              <label class="switch">
+                <input type="checkbox" id="cursorToggle" />
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+          <!-- Note -->
+          <div class="tool-note">This tool is only available on Chrome</div>
+        </div>
+      </div>
+      <!-- Text Container for Animated Letters -->
+      <div class="text-container" id="text"></div>
+      <!-- SVG Filter -->
+      <svg>
+        <defs>
+          <filter id="gooey">
+            <feGaussianBlur
+              in="SourceGraphic"
+              stdDeviation="20"
+              result="blur"
+            />
+            <feColorMatrix
+              in="blur"
+              mode="matrix"
+              values="
+              1 0 0 0 0  
+              0 1 0 0 0  
+              0 0 1 0 0  
+              0 0 0 20 -10"
+              result="goo"
+            />
+            <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+          </filter>
+        </defs>
+      </svg>
+    </div>
+    <script src="fluid_script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- SEO -->
+    <title>Pintoy.ToolTool</title>
+    <meta name="author" content="Tooltool" />
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon" />
+    <meta
+      name="description"
+      content="Tooltool is a creative studio that helps brands build visual systems and 
+      provides custom-built generators to scale their identity with consistency and efficiency."
+    />
+    <!-- OG -->
+    <meta property="og:title" content="Tooltool" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tooltool.design" />
+    <meta property="og:image" content="Images/Logo.png" />
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="pintoy_style.css" />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header>
+      <div class="header" style="visibility: hidden">
+        <div class="header-logo">
+          <a href="../../index.html">
+            <img src="../../images/logo.svg" alt="tooltool" />
+          </a>
+        </div>
+
+        <div class="inside">
+          <ul>
+            <li class="header-item">
+              <a href="../../case-study.html">case study</a>
+            </li>
+            <li class="header-item">
+              <a href="../../about.html">about us</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="header-button">
+          <span class="hamburger">
+            <img src="../../images/header_hamburger.svg" alt="..." />
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Canvas container -->
+    <div id="canvas-container">
+      <canvas id="dotCanvas"></canvas>
+    </div>
+    <div class="main-container" id="mainContainer">
+      <!-- Section: Collapse Button -->
+      <div class="section">
+        <div class="collapse-circle" id="collapseToggle">
+          <img id="collapseIcon" src="../../Images/ui_minus.svg" alt="-" />
+        </div>
+      </div>
+      <div class="content-area" id="contentArea">
+        <!-- Section: Text -->
+        <div class="section">
+          <div class="section-label">Text</div>
+          <textarea id="textInput" class="mini-box">
+
+-tool-
+-tool-
+          </textarea>
+        </div>
+
+        <!-- Section: 4 Grid (Color Options) -->
+        <div class="section">
+          <div class="grid-2x2">
+            <div class="grid-item">
+              <div class="section-label">Text Dot</div>
+              <div class="mini-box">
+                <input type="color" id="textDotColor" value="#1f1f1f" />
+              </div>
+            </div>
+            <div class="grid-item">
+              <div class="section-label">Grid Dot</div>
+              <div class="mini-box">
+                <input type="color" id="gridDotColor" value="#fcfcfc" />
+              </div>
+            </div>
+            <div class="grid-item">
+              <div class="section-label">Extrusion</div>
+              <div class="mini-box">
+                <input type="color" id="extrusionColor" value="#aff7a1" />
+              </div>
+            </div>
+            <div class="grid-item">
+              <div class="section-label">Background</div>
+              <div class="mini-box">
+                <input type="color" id="bgColor" value="#efefef" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Animation & Speed -->
+        <div class="section">
+          <div class="row-set">
+            <div class="toggle-row">
+              <div class="section-label">Animation</div>
+              <label class="switch">
+                <input type="checkbox" checked />
+                <span class="slider"></span>
+              </label>
+            </div>
+            <div class="speed-row">
+              <div class="section-label">Speed</div>
+              <!-- Speed range input from 1 to 10 -->
+              <input
+                type="range"
+                class="speed-bar"
+                min="1"
+                max="10"
+                step="1"
+                value="5"
+              />
+              <div class="speed-value" id="speedValue">5</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="pintoy_script.js"></script>
+  </body>
+</html>
