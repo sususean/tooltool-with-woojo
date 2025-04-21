@@ -267,6 +267,7 @@ textarea.mini-box {
   background-color: var(--color-accent);
   border-radius: 20px;
   transition: 0.4s;
+  box-shadow: none;
 }
 
 .slider:before {
@@ -279,6 +280,7 @@ textarea.mini-box {
   background-color: var(--color-white);
   border-radius: 50%;
   transition: 0.4s;
+  box-shadow: none;
 }
 
 .switch input:checked + .slider {
@@ -298,6 +300,7 @@ textarea.mini-box {
   border-radius: 4px;
   outline: none;
   margin: 0 12px;
+  box-shadow: none;
 }
 
 .speed-bar::-webkit-slider-thumb {
@@ -309,6 +312,7 @@ textarea.mini-box {
   border-radius: 50%;
   cursor: pointer;
   border: none;
+  box-shadow: none;
 }
 
 .speed-bar::-moz-range-thumb {
@@ -318,12 +322,14 @@ textarea.mini-box {
   border: none;
   border-radius: 50%;
   cursor: pointer;
+  box-shadow: none;
 }
 
 .speed-bar::-moz-range-track {
   background: var(--color-accent);
   height: 6px;
   border-radius: 4px;
+  box-shadow: none;
 }
 
 .row-set {

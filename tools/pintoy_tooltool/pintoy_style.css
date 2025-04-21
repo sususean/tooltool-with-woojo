@@ -241,6 +241,7 @@ textarea.mini-box {
   background-color: var(--color-accent);
   border-radius: 20px;
   transition: 0.4s;
+  box-shadow: none;
 }
 
 .slider:before {
@@ -253,6 +254,7 @@ textarea.mini-box {
   background-color: var(--color-white);
   border-radius: 50%;
   transition: 0.4s;
+  box-shadow: none;
 }
 
 .switch input:checked + .slider {

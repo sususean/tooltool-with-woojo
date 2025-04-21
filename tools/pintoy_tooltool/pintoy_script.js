@@ -2,37 +2,32 @@
    Header Menu Animation
    - Adjusts the header width and toggles the open state.
    ============================================ */
-window.addEventListener("load", () => {
+(() => {
   const header = document.querySelector(".header");
-  const inside = document.querySelector(".inside");
-  const headerButton = document.querySelector(".header-button");
-  const headerLogo = document.querySelector(".header-logo");
-
+  const inside = header.querySelector(".inside");
+  const headerLogo = header.querySelector(".header-logo");
+  const headerButton = header.querySelector(".header-button");
   let isOpen = false;
 
   function adjustMenuWidth() {
-    const logoWidth = headerLogo.offsetWidth;
-    const hamburgerWidth = headerButton.offsetWidth;
-    const insideWidth = inside.scrollWidth;
-
-    if (isOpen) {
-      header.style.width = `${logoWidth + insideWidth + hamburgerWidth}px`;
-    } else {
-      header.style.width = `${logoWidth + hamburgerWidth}px`;
-    }
+    const logoW = headerLogo.offsetWidth;
+    const btnW = headerButton.offsetWidth;
+    const insideW = inside.scrollWidth;
+    header.style.width = isOpen
+      ? `${logoW + insideW + btnW}px`
+      : `${logoW + btnW}px`;
   }
+
+  // **show it right away** (no waiting for any events):
+  header.style.visibility = "visible";
+  adjustMenuWidth();
 
   headerButton.addEventListener("click", () => {
     isOpen = !isOpen;
     header.classList.toggle("open", isOpen);
     adjustMenuWidth();
   });
-
-  requestAnimationFrame(() => {
-    adjustMenuWidth();
-    header.style.visibility = "visible";
-  });
-});
+})();
 
 /* ============================================
      Canvas and UI Elements Initialization

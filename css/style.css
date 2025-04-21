@@ -265,20 +265,24 @@ p {
 
 .thumbnail-container img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
   border-radius: 20px;
   background-color: var(--color-accent-variant);
+  aspect-ratio: 1 / 1;
+  inset: 0;
 }
 
 /* make videos behave just like your thumbnails */
 .thumbnail-container video {
   width: 100%;
-  height: auto; /* preserve aspect ratio */
+  height: 100%; /* preserve aspect ratio */
   display: block; /* remove inline gaps */
   border-radius: 20px; /* match your rounded corners */
   background-color: var(--color-accent-variant);
   object-fit: cover; /* fill the box cleanly */
+  aspect-ratio: 1 / 1;
+  inset: 0;
 }
 
 .thumbnail-link {
@@ -378,6 +382,7 @@ p {
   border-radius: 4px;
   outline: none;
   cursor: pointer;
+  box-shadow: none;
 }
 
 .scroll-handle::-webkit-slider-thumb {
@@ -388,6 +393,7 @@ p {
   border-radius: 50%;
   border: none;
   cursor: pointer;
+  box-shadow: none;
 }
 
 .scroll-handle::-moz-range-thumb {
@@ -397,6 +403,7 @@ p {
   border: none;
   border-radius: 50%;
   cursor: pointer;
+  box-shadow: none;
 }
 
 /* ===================================== */

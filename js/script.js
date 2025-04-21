@@ -1,5 +1,5 @@
 // Header Menu Animation (unchanged) script.js](file-service://file-Q5k72ksX7EpFQPNUJXeRa6)
-document.addEventListener("DOMContentLoaded", () => {
+(() => {
   const header = document.querySelector(".header");
   const inside = header.querySelector(".inside");
   const headerLogo = header.querySelector(".header-logo");
@@ -15,16 +15,16 @@ document.addEventListener("DOMContentLoaded", () => {
       : `${logoW + btnW}px`;
   }
 
-  // show instantly, no waiting for images/videos
-  adjustMenuWidth();
+  // **show it right away** (no waiting for any events):
   header.style.visibility = "visible";
+  adjustMenuWidth();
 
   headerButton.addEventListener("click", () => {
     isOpen = !isOpen;
     header.classList.toggle("open", isOpen);
     adjustMenuWidth();
   });
-});
+})();
 
 // --------------------------------------------------------------------
 // Tool Gallery Sorting by data-date (newest first) and fallback to name
