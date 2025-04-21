@@ -25,7 +25,7 @@ window.addEventListener("load", () => {
     adjustMenuWidth();
   });
 
-  setTimeout(() => {
+  requestAnimationFrame(() => {
     adjustMenuWidth();
     header.style.visibility = "visible";
   });

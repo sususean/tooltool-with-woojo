@@ -25,7 +25,7 @@ window.addEventListener("load", () => {
     adjustMenuWidth();
   });
 
-  setTimeout(() => {
+  requestAnimationFrame(() => {
     adjustMenuWidth();
     header.style.visibility = "visible";
   });
@@ -85,13 +85,13 @@ function initScrollHandles() {
     if (!slider || !carousel || !track) return;
 
     const duration = 30000;
-    let startTime = null;
-    let rafId = null;
-    let paused = false;
+    let startTime = null,
+      rafId,
+      paused = false;
 
     const maxScroll = () => track.scrollWidth - carousel.clientWidth;
 
-    // map slider → scroll
+    // slider → scroll
     slider.min = 0;
     slider.max = 100;
     slider.step = 0.1;
@@ -99,51 +99,44 @@ function initScrollHandles() {
       carousel.scrollLeft = (slider.value / 100) * maxScroll();
     };
 
-    // map scroll → slider
+    // scroll → slider
     carousel.onscroll = () => {
       slider.value =
         maxScroll() > 0 ? (carousel.scrollLeft / maxScroll()) * 100 : 0;
     };
 
-    // on drag start: pause animation
+    // pause on drag
     slider.addEventListener("pointerdown", () => {
       paused = true;
       cancelAnimationFrame(rafId);
     });
-    // on drag end: resume from current spot
     slider.addEventListener("pointerup", () => {
-      // compute elapsed time so far
       const pct = slider.value / 100;
       startTime = performance.now() - pct * duration;
       paused = false;
       rafId = requestAnimationFrame(animate);
     });
 
-    // The animation loop
-    function animate(timestamp) {
-      if (paused) return; // bail out if user is dragging
-      if (!startTime) startTime = timestamp;
-      const elapsed = timestamp - startTime;
+    function animate(ts) {
+      if (paused) return;
+      if (!startTime) startTime = ts;
+      const elapsed = ts - startTime;
       const progress = Math.min(elapsed / duration, 1);
       const ms = maxScroll();
-
       slider.value = progress * 100;
       carousel.scrollLeft = progress * ms;
-
       if (progress < 1) rafId = requestAnimationFrame(animate);
     }
 
-    // kick it off
     rafId = requestAnimationFrame(animate);
-
-    // keep handlers in sync on resize
     window.addEventListener("resize", () => {
-      // nothing special needed here; maxScroll() is dynamic
+      /* maxScroll adapts automatically */
     });
   });
 }
 
-window.addEventListener("load", initScrollHandles);
+// kick off as soon as DOM is ready
+document.addEventListener("DOMContentLoaded", initScrollHandles);
 window.addEventListener("pageshow", (e) => {
   if (e.persisted) initScrollHandles();
 });
