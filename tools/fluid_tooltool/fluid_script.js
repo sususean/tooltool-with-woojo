@@ -16,10 +16,8 @@
   }
 
   // Wait for font to load before measuring
-  document.fonts.ready.then(() => {
-    adjustMenuWidth();
-    header.style.visibility = "visible";
-  });
+  header.style.visibility = "visible";
+  adjustMenuWidth();
 
   headerButton.addEventListener("click", () => {
     isOpen = !isOpen;
