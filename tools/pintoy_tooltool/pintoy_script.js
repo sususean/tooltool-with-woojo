@@ -5,12 +5,12 @@
 (() => {
   const header = document.querySelector(".header");
   const inside = header.querySelector(".inside");
-  const headerLogo = header.querySelector(".header-logo");
+  const logoBox = header.querySelector(".header-logo"); // ← full white box
   const headerButton = header.querySelector(".header-button");
   let isOpen = false;
 
   function adjustMenuWidth() {
-    const logoW = headerLogo.offsetWidth;
+    const logoW = logoBox.offsetWidth; // same as before
     const btnW = headerButton.offsetWidth;
     const insideW = inside.scrollWidth;
     header.style.width = isOpen
@@ -18,28 +18,23 @@
       : `${logoW + btnW}px`;
   }
 
-  function initHeader() {
-    // show & size the header once logo+font are loaded
-    header.style.visibility = "visible";
-    adjustMenuWidth();
-  }
+  // wait for the SVG logo itself + your @font-face to finish loading
+  const logoImg = logoBox.querySelector("img");
+  const logoReady = logoImg.complete
+    ? Promise.resolve()
+    : new Promise((res) => logoImg.addEventListener("load", res));
 
-  // toggle open/close on click (exactly your existing animation logic)
+  Promise.all([logoReady, document.fonts.ready]).then(() => {
+    header.style.visibility = "visible";
+    adjustMenuWidth(); // only now do that first measurement
+  });
+
+  // toggles still immediately recalc on click, exactly as before
   headerButton.addEventListener("click", () => {
     isOpen = !isOpen;
     header.classList.toggle("open", isOpen);
     adjustMenuWidth();
   });
-
-  // wait for both the logo image AND any web‑fonts to finish loading...
-  const img = headerLogo.querySelector("img");
-  const fontPromise = document.fonts ? document.fonts.ready : Promise.resolve();
-  const imgPromise = new Promise((resolve) => {
-    img.complete ? resolve() : img.addEventListener("load", resolve);
-  });
-
-  // …then show & size
-  Promise.all([imgPromise, fontPromise]).then(initHeader);
 })();
 
 /* ============================================
