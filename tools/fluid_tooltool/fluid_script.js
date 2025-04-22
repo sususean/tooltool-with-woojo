@@ -1,39 +1,3 @@
-// Header Menu Animation
-(() => {
-  const header = document.querySelector(".header");
-  const inside = header.querySelector(".inside");
-  const logoBox = header.querySelector(".header-logo"); // ← full white box
-  const headerButton = header.querySelector(".header-button");
-  let isOpen = false;
-
-  function adjustMenuWidth() {
-    const logoW = logoBox.offsetWidth; // same as before
-    const btnW = headerButton.offsetWidth;
-    const insideW = inside.scrollWidth;
-    header.style.width = isOpen
-      ? `${logoW + insideW + btnW}px`
-      : `${logoW + btnW}px`;
-  }
-
-  // wait for the SVG logo itself + your @font-face to finish loading
-  const logoImg = logoBox.querySelector("img");
-  const logoReady = logoImg.complete
-    ? Promise.resolve()
-    : new Promise((res) => logoImg.addEventListener("load", res));
-
-  Promise.all([logoReady, document.fonts.ready]).then(() => {
-    header.style.visibility = "visible";
-    adjustMenuWidth(); // only now do that first measurement
-  });
-
-  // toggles still immediately recalc on click, exactly as before
-  headerButton.addEventListener("click", () => {
-    isOpen = !isOpen;
-    header.classList.toggle("open", isOpen);
-    adjustMenuWidth();
-  });
-})();
-
 /***** CSS ANIMATION LIBRARY *****/
 
 /***** UNDERLYING ANIMATION CODE *****/
