@@ -15,15 +15,28 @@
       : `${logoW + btnW}px`;
   }
 
-  // Show header immediately and size it
-  header.style.visibility = "visible";
-  adjustMenuWidth();
+  function initHeader() {
+    // show & size the header once logo+font are loaded
+    header.style.visibility = "visible";
+    adjustMenuWidth();
+  }
 
+  // toggle open/close on click (exactly your existing animation logic)
   headerButton.addEventListener("click", () => {
     isOpen = !isOpen;
     header.classList.toggle("open", isOpen);
     adjustMenuWidth();
   });
+
+  // wait for both the logo image AND any web‑fonts to finish loading...
+  const img = headerLogo.querySelector("img");
+  const fontPromise = document.fonts ? document.fonts.ready : Promise.resolve();
+  const imgPromise = new Promise((resolve) => {
+    img.complete ? resolve() : img.addEventListener("load", resolve);
+  });
+
+  // …then show & size
+  Promise.all([imgPromise, fontPromise]).then(initHeader);
 })();
 
 // --------------------------------------------------------------------
