@@ -2,32 +2,36 @@
 (() => {
   const header = document.querySelector(".header");
   const inside = header.querySelector(".inside");
-  const logoBox = header.querySelector(".header-logo"); // ← full white box
-  const headerButton = header.querySelector(".header-button");
+  const logoBox = header.querySelector(".header-logo");
+  const headerBtn = header.querySelector(".header-button");
   let isOpen = false;
 
   function adjustMenuWidth() {
-    const logoW = logoBox.offsetWidth; // same as before
-    const btnW = headerButton.offsetWidth;
+    const logoW = logoBox.offsetWidth;
+    const btnW = headerBtn.offsetWidth;
     const insideW = inside.scrollWidth;
     header.style.width = isOpen
       ? `${logoW + insideW + btnW}px`
       : `${logoW + btnW}px`;
   }
 
-  // wait for the SVG logo itself + your @font-face to finish loading
+  // grab the two images that matter
   const logoImg = logoBox.querySelector("img");
-  const logoReady = logoImg.complete
-    ? Promise.resolve()
-    : new Promise((res) => logoImg.addEventListener("load", res));
+  const hamburgerImg = headerBtn.querySelector("img");
 
-  Promise.all([logoReady, document.fonts.ready]).then(() => {
+  // create promises that resolve as soon as each image is done
+  const waitForImg = (img) =>
+    img.complete
+      ? Promise.resolve()
+      : new Promise((res) => img.addEventListener("load", res));
+
+  Promise.all([waitForImg(logoImg), waitForImg(hamburgerImg)]).then(() => {
+    // only now show + measure — no more waiting on gallery videos
     header.style.visibility = "visible";
-    adjustMenuWidth(); // only now do that first measurement
+    adjustMenuWidth();
   });
 
-  // toggles still immediately recalc on click, exactly as before
-  headerButton.addEventListener("click", () => {
+  headerBtn.addEventListener("click", () => {
     isOpen = !isOpen;
     header.classList.toggle("open", isOpen);
     adjustMenuWidth();
