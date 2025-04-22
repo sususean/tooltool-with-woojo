@@ -15,7 +15,7 @@
       : `${logoW + btnW}px`;
   }
 
-  // Wait for font to load before measuring
+  // Show header immediately and size it
   header.style.visibility = "visible";
   adjustMenuWidth();
 
