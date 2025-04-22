@@ -18,9 +18,11 @@
       : `${logoW + btnW}px`;
   }
 
-  // **show it right away** (no waiting for any events):
-  header.style.visibility = "visible";
-  adjustMenuWidth();
+  // Wait for font to load before measuring
+  document.fonts.ready.then(() => {
+    adjustMenuWidth();
+    header.style.visibility = "visible";
+  });
 
   headerButton.addEventListener("click", () => {
     isOpen = !isOpen;

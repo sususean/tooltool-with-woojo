@@ -35,13 +35,13 @@
 /* Font Faces */
 @font-face {
   font-family: "TT Hoves Pro Medium";
-  src: url("fonts/tt_hoves_pro_trial_medium.woff") format("woff");
+  src: url("/fonts/tt_hoves_pro_trial_medium.woff") format("woff");
   font-weight: normal;
 }
 
 @font-face {
   font-family: "TT Hoves Pro Regular";
-  src: url("fonts/tt_hoves_pro_trial_regular.woff") format("woff");
+  src: url("/fonts/tt_hoves_pro_trial_regular.woff") format("woff");
   font-weight: normal;
 }
 
@@ -62,6 +62,8 @@ html,
 body {
   scrollbar-width: none;
   -ms-overflow-style: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html::-webkit-scrollbar,

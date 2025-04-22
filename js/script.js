@@ -15,9 +15,11 @@
       : `${logoW + btnW}px`;
   }
 
-  // **show it right away** (no waiting for any events):
-  header.style.visibility = "visible";
-  adjustMenuWidth();
+  // Wait for font to load before measuring
+  document.fonts.ready.then(() => {
+    adjustMenuWidth();
+    header.style.visibility = "visible";
+  });
 
   headerButton.addEventListener("click", () => {
     isOpen = !isOpen;
@@ -135,3 +137,20 @@ document.addEventListener("DOMContentLoaded", initScrollHandles);
 window.addEventListener("pageshow", (e) => {
   if (e.persisted) initScrollHandles();
 });
+
+// --------------------------------------------------------------------
+// Autoplay videos when in view
+// --------------------------------------------------------------------
+const videos = document.querySelectorAll("video");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.play();
+    } else {
+      entry.target.pause();
+    }
+  });
+});
+
+videos.forEach((video) => observer.observe(video));
