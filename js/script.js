@@ -1,4 +1,4 @@
-// Header Menu Animation (unchanged) script.js](file-service://file-Q5k72ksX7EpFQPNUJXeRa6)
+// Header Menu Animation
 (() => {
   const header = document.querySelector(".header");
   const inside = header.querySelector(".inside");
