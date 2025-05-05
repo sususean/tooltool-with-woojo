@@ -128,3 +128,17 @@ letterColorInput.addEventListener("input", (e) => {
   updateCssVariable("--text-color", newColor);
 });
 window.addEventListener("DOMContentLoaded", runDisplayAnimation);
+
+/***** COLLAPSE UI FEATURE *****/
+const toggleBtn = document.getElementById("collapseToggle");
+const collapseIcon = document.getElementById("collapseIcon");
+const uiContainer = document.getElementById("mainContainer");
+
+toggleBtn.addEventListener("click", () => {
+  uiContainer.classList.toggle("collapsed");
+
+  const isCollapsed = uiContainer.classList.contains("collapsed");
+  collapseIcon.src = isCollapsed
+    ? "../../images/ui_plus.svg"
+    : "../../images/ui_minus.svg";
+});
